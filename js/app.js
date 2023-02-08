@@ -5,12 +5,12 @@
   window.addEventListener('load', init);
 
   function init() {
-    let name = prompt('what\'s your name fam?');
-    alert('Hello ' + name + '. Welcome.');
+    let userName = prompt('what\'s your name fam?');
+    alert('Hello ' + userName + '. Welcome.');
 
     guessingGame();
 
-    alert('ok ' + name + '. That was fun. Read my bio to learn more about me');
+    alert('ok ' + userName + '. That was fun. Read my bio to learn more about me');
 
     let button = document.getElementById('btn');
     button.addEventListener('click', displayAnswers);
