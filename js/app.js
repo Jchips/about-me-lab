@@ -16,6 +16,7 @@
     button.addEventListener('click', displayAnswers);
   }
 
+  // Runs the guessing game to play with the user
   function guessingGame() {
     alert('let\'s play a guessing game.\nAnswer with \'yes\', \'y\', \'no\' or \'n\' for each question!');
     let question1 = document.getElementById('q1');
@@ -45,25 +46,29 @@
     response(userResponse5, a1Q5, a2Q5);
   }
 
+  // Evaluates the users' response to the guessing game questions
   function response(userResponse, answer1, answer2) {
     userResponse = userResponse.toLowerCase();
     if (userResponse === answer1 || userResponse === answer2) {
       alert('You are correct');
-      console.log('you are correct');
+      // console.log('you are correct');
     } else if (userResponse !== 'yes' && userResponse !== 'y' && userResponse !== 'no' && userResponse !== 'n') {
       alert('please respond with either \'yes\', \'y\', \'no\' or \'n\' next time');
+      // console.log('please respond with either \'yes\', \'y\', \'no\' or \'n\' next time');
     } else {
       alert('sorry, you are WRONG');
+      // console.log('sorry, you are WRONG');
     }
   }
 
+  // Displays the answers to my guessing game questions
   function displayAnswers() {
     let answers = document.getElementById('answers');
     let orderedList = document.createElement('ol');
     let li1 = document.createElement('li');
     li1.innerHTML = 'yes, I love R&B';
     let li2 = document.createElement('li');
-    li2.textContent = 'I only WISH I could do a backflip...';
+    li2.textContent = 'I only wish I could do a backflip...';
     let li3 = document.createElement('li');
     li3.textContent = 'yes, Samsung all day';
     let li4 = document.createElement('li');
@@ -78,6 +83,7 @@
     answers.appendChild(orderedList);
   }
 
+  // my original code without the functions
   //   if (question1.toLowerCase() === 'yes' || question1.toLowerCase() === 'y') {
   //     // console.log("You are correct");
   //     alert('You are correct');
@@ -120,16 +126,5 @@
   //   }
 
   //   alert('ok ' + name + '. That was fun. Read my bio to learn more about me');
-  // }
-
-  // function responses(response) {
-  //   if (question.toLowerCase() === 'yes' || question.toLowerCase() === 'y') {
-  //     alert('You are correct');
-  //   } else if (question === '') {
-  //     alert('please say something fam');
-  //   } else {
-  //     alert('you are WRONG');
-  //   }
-  // }
 
 })();
