@@ -1,4 +1,4 @@
-# about-me-lab
+# about-me-lab (Lab 2)
 
 ## About Me
 
