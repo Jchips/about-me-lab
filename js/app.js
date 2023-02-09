@@ -6,7 +6,14 @@ function init() {
   let userName = prompt('what\'s your name fam?');
   alert('Hello ' + userName + '. Welcome.');
 
-  guessingGame();
+  let correctAnswers = 0;
+
+  correctAnswers = guessingGame(correctAnswers);
+
+  correctAnswers = guessNum(correctAnswers);
+  correctAnswers = guessStates(correctAnswers);
+
+  alert('this is how many answers you got correct: ' + correctAnswers);
 
   alert('ok ' + userName + '. That was fun. Read my bio to learn more about me');
 
@@ -15,41 +22,44 @@ function init() {
 }
 
 // Runs the guessing game to play with the user
-function guessingGame() {
+function guessingGame(correctAnswers) {
   alert('let\'s play a guessing game.\nAnswer with \'yes\', \'y\', \'no\' or \'n\' for each question!');
   let question1 = document.getElementById('q1');
   let userResponse1 = prompt(question1.textContent);
   let a1Q1 = 'yes';
   let a2Q1 = 'y';
-  response(userResponse1, a1Q1, a2Q1);
+  correctAnswers = response(correctAnswers, userResponse1, a1Q1, a2Q1);
   let question2 = document.getElementById('q2');
   let userResponse2 = prompt(question2.textContent);
   let a1Q2 = 'no';
   let a2Q2 = 'n';
-  response(userResponse2, a1Q2, a2Q2);
+  correctAnswers = response(correctAnswers, userResponse2, a1Q2, a2Q2);
   let question3 = document.getElementById('q3');
   let userResponse3 = prompt(question3.textContent);
   let a1Q3 = 'yes';
   let a2Q3 = 'y';
-  response(userResponse3, a1Q3, a2Q3);
+  correctAnswers = response(correctAnswers, userResponse3, a1Q3, a2Q3);
   let question4 = document.getElementById('q4');
   let userResponse4 = prompt(question4.textContent);
   let a1Q4 = 'yes';
   let a2Q4 = 'y';
-  response(userResponse4, a1Q4, a2Q4);
+  correctAnswers = response(correctAnswers, userResponse4, a1Q4, a2Q4);
   let question5 = document.getElementById('q5');
   let userResponse5 = prompt(question5.textContent);
   let a1Q5 = 'no';
   let a2Q5 = 'n';
-  response(userResponse5, a1Q5, a2Q5);
+  correctAnswers = response(correctAnswers, userResponse5, a1Q5, a2Q5);
+  return correctAnswers;
 }
 
 // Evaluates the users' response to the guessing game questions
-function response(userResponse, answer1, answer2) {
+function response(correctAnswers, userResponse, answer1, answer2) {
   userResponse = userResponse.toLowerCase();
   if (userResponse === answer1 || userResponse === answer2) {
     alert('You are correct');
     // console.log('you are correct');
+    correctAnswers++;
+    console.log('correct: ' + correctAnswers);
   } else if (userResponse !== 'yes' && userResponse !== 'y' && userResponse !== 'no' && userResponse !== 'n') {
     alert('please respond with either \'yes\', \'y\', \'no\' or \'n\' next time');
     // console.log('please respond with either \'yes\', \'y\', \'no\' or \'n\' next time');
@@ -57,6 +67,7 @@ function response(userResponse, answer1, answer2) {
     alert('sorry, you are WRONG');
     // console.log('sorry, you are WRONG');
   }
+  return correctAnswers;
 }
 
 // Displays the answers to my guessing game questions
@@ -81,47 +92,52 @@ function displayAnswers() {
   answers.appendChild(orderedList);
 }
 
-// my original code without the functions
-//   if (question1.toLowerCase() === 'yes' || question1.toLowerCase() === 'y') {
-//     // console.log("You are correct");
-//     alert('You are correct');
-//   } else if (question1 === '') {
-//     alert('please say something fam...');
-//   } else {
-//     alert('you are WRONG');
-//   }
-//   let question2 = prompt('can I do a backflip?');
-//   if (question2.toLowerCase() === 'no' || question2.toLowerCase() === 'n') {
-//     alert('You are correct');
-//   } else if (question2 === '') {
-//     alert('please say something fam...');
-//   } else {
-//     alert('you are WRONG');
-//   }
-//   let question3 = prompt('do I have a Samsung phone?');
-//   if (question3.toLowerCase() === 'yes' || question3.toLowerCase() === 'y') {
-//     alert('You are correct');
-//   } else if (question3 === '') {
-//     alert('please say something fam...');
-//   } else {
-//     alert('you are WRONG');
-//   }
-//   let question4 = prompt('do I like to dance?');
-//   if (question4.toLowerCase() === 'yes' || question4.toLowerCase() === 'y') {
-//     alert('You are correct');
-//   } else if (question4 === '') {
-//     alert('please say something fam...');
-//   } else {
-//     alert('you are WRONG');
-//   }
-//   let question5 = prompt('do I like ice cream?');
-//   if (question5.toLowerCase() === 'no' || question5.toLowerCase() === 'n') {
-//     alert('You are correct');
-//   } else if (question5 === '') {
-//     alert('please say something fam...');
-//   } else {
-//     alert('you are WRONG');
-//   }
+// let's user guess how many siblings I have
+function guessNum(correctAnswers) {
+  let num = prompt('guess how many siblings I have (enter a number). You have 4 guesses');
+  let siblingsAnswer = 7;
+  num = parseInt(num);
 
-//   alert('ok ' + name + '. That was fun. Read my bio to learn more about me');
+  for (let i = 0; i < 3; i++) {
+    if (num > siblingsAnswer) {
+      alert('too high');
+      num = prompt('keep guessing');
+    } else if (num < siblingsAnswer) {
+      alert('too low');
+      num = prompt('keep guessing');
+    } else if (num == siblingsAnswer) {
+      alert('you guessed it!');
+      correctAnswers++;
+      console.log("correct: " + correctAnswers);
+      break;
+    }
+  }
+  alert('I have ' + siblingsAnswer + ' siblings.');
+  return correctAnswers;
+}
+
+// let's user guess which states I've been to
+function guessStates(correctAnswers) {
+  let guess = prompt('Guess one of the states I\'ve been to in the USA. You have 6 guesses').toLowerCase();
+  let states = ['washington', 'texas', 'california', 'idaho', 'oregon'];
+  for (let i  = 0; i < 5; i++) {
+    if (guess !== states[0] && guess !== states[1] && guess !== states[2] && 
+      guess !== states[3] && guess !== states[4]) {
+        guess = prompt('nope, guess again!');
+    } else {
+      alert('yeah, that\'s one of them');
+      correctAnswers++;
+      console.log("correct: " + correctAnswers);
+      break;
+    }
+  }
+  let statesList = "I've been to: ";
+  for (let i = 0; i < states.length - 1; i++) {
+    statesList += states[i] + ", ";
+  }
+  statesList += states[states.length - 1] + ".";
+  alert(statesList);
+  return correctAnswers;
+}
+
 
