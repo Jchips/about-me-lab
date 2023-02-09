@@ -8,9 +8,9 @@ let correctAnswers = 0;
 
 alert('let\'s play a guessing game.\nAnswer with \'yes\', \'y\', \'no\' or \'n\' for each question!');
 let question1 = document.getElementById('q1');
-let userResponse1 = prompt(question1.textContent);
+let userResponse1 = prompt(question1.textContent).toLowerCase();
 
-if (userResponse1.toLowerCase() === 'yes' || userResponse1.toLowerCase() === 'y') {
+if (userResponse1 === 'yes' || userResponse1 === 'y') {
   // console.log("You are correct");
   alert('You are correct');
   correctAnswers++;
@@ -24,8 +24,8 @@ if (userResponse1.toLowerCase() === 'yes' || userResponse1.toLowerCase() === 'y'
 
 // let userResponse2 = prompt('can I do a backflip?');
 let question2 = document.getElementById('q2');
-let userResponse2 = prompt(question2.textContent);
-if (userResponse2.toLowerCase() === 'no' || userResponse2.toLowerCase() === 'n') {
+let userResponse2 = prompt(question2.textContent).toLowerCase();
+if (userResponse2 === 'no' || userResponse2 === 'n') {
   alert('You are correct');
   correctAnswers++;
   console.log('correct: ' + correctAnswers);
@@ -38,8 +38,8 @@ if (userResponse2.toLowerCase() === 'no' || userResponse2.toLowerCase() === 'n')
 
 // let userResponse3 = prompt('do I have a Samsung phone?');
 let question3 = document.getElementById('q3');
-let userResponse3 = prompt(question3.textContent);
-if (userResponse3.toLowerCase() === 'yes' || userResponse3.toLowerCase() === 'y') {
+let userResponse3 = prompt(question3.textContent).toLowerCase();
+if (userResponse3 === 'yes' || userResponse3 === 'y') {
   alert('You are correct');
   correctAnswers++;
   console.log('correct: ' + correctAnswers);
@@ -52,8 +52,8 @@ if (userResponse3.toLowerCase() === 'yes' || userResponse3.toLowerCase() === 'y'
 
 // let userResponse4 = prompt('do I like to dance?');
 let question4 = document.getElementById('q4');
-let userResponse4 = prompt(question4.textContent);
-if (userResponse4.toLowerCase() === 'yes' || userResponse4.toLowerCase() === 'y') {
+let userResponse4 = prompt(question4.textContent).toLowerCase();
+if (userResponse4 === 'yes' || userResponse4 === 'y') {
   alert('You are correct');
   correctAnswers++;
   console.log('correct: ' + correctAnswers);
@@ -66,8 +66,8 @@ if (userResponse4.toLowerCase() === 'yes' || userResponse4.toLowerCase() === 'y'
 
 // let question5 = prompt('do I like ice cream?');
 let question5 = document.getElementById('q5');
-let userResponse5 = prompt(question5.textContent);
-if (userResponse5.toLowerCase() === 'no' || userResponse5.toLowerCase() === 'n') {
+let userResponse5 = prompt(question5.textContent).toLowerCase();
+if (userResponse5 === 'no' || userResponse5 === 'n') {
   alert('You are correct');
   correctAnswers++;
   console.log('correct: ' + correctAnswers);
@@ -78,37 +78,45 @@ if (userResponse5.toLowerCase() === 'no' || userResponse5.toLowerCase() === 'n')
   alert('you are WRONG');
 }
 
-let num = prompt('guess how many siblings I have (enter a number). You have 4 guesses');
+// user guesses how many siblings I have
 let siblingsAnswer = 7;
-num = parseInt(num);
-
-for (let i = 0; i < 3; i++) {
+for (let i = 0; i < 4; i++) {
+  let num = prompt('guess how many siblings I have (enter a number). You have ' + (4 - i) + ' guesses left');
+  num = parseInt(num);
   if (num > siblingsAnswer) {
     alert('too high');
-    num = prompt('keep guessing');
   } else if (num < siblingsAnswer) {
     alert('too low');
-    num = prompt('keep guessing');
   } else if (num === siblingsAnswer) {
     alert('you guessed it!');
     correctAnswers++;
     console.log('correct: ' + correctAnswers);
     break;
+  } else {
+    alert('please enter a number next time');
   }
 }
 alert('I have ' + siblingsAnswer + ' siblings.');
 
-let guess = prompt('Guess one of the states I\'ve been to in the USA. You have 6 guesses').toLowerCase();
+// User guesses one of the states that I've been to
 let states = ['washington', 'texas', 'california', 'idaho', 'oregon'];
-for (let i  = 0; i < 5; i++) {
-  if (guess !== states[0] && guess !== states[1] && guess !== states[2] &&
-    guess !== states[3] && guess !== states[4]) {
-    guess = prompt('nope, guess again!');
-  } else {
-    alert('yeah, that\'s one of them');
-    correctAnswers++;
-    console.log('correct: ' + correctAnswers);
+let guessed = false;
+for (let i  = 0; i < 6; i++) {
+  let guess = prompt('Guess one of the states I\'ve been to in the USA. You have '
+  + (6 - i) + ' guesses left').toLowerCase();
+  for (let j = 0; j < states.length; j++) {
+    if (guess === states[j]) {
+      alert('yeah, that\'s one of them');
+      correctAnswers++;
+      console.log('correct: ' + correctAnswers);
+      guessed = true;
+      break;
+    }
+  }
+  if (guessed) {
     break;
+  } else {
+    guess = alert('nope!');
   }
 }
 let statesList = 'I\'ve been to: ';
@@ -118,10 +126,11 @@ for (let i = 0; i < states.length - 1; i++) {
 statesList += states[states.length - 1] + '.';
 alert(statesList);
 
-alert('this is how many answers you got correct: ' + correctAnswers);
+alert('you got ' + correctAnswers + ' answers correct out of 7');
 
 alert('ok ' + userName + '. That was fun. Read my bio to learn more about me');
 
+// CODE WITH FUNCTIONS
 // 'use strict';
 
 // window.addEventListener('load', init);
@@ -133,11 +142,10 @@ alert('ok ' + userName + '. That was fun. Read my bio to learn more about me');
 //   let correctAnswers = 0;
 
 //   correctAnswers = guessingGame(correctAnswers);
-
 //   correctAnswers = guessNum(correctAnswers);
 //   correctAnswers = guessStates(correctAnswers);
 
-//   alert('this is how many answers you got correct: ' + correctAnswers);
+//   alert('you got ' + correctAnswers + ' answers correct out of 7');
 
 //   alert('ok ' + userName + '. That was fun. Read my bio to learn more about me');
 
@@ -216,50 +224,56 @@ alert('ok ' + userName + '. That was fun. Read my bio to learn more about me');
 //   answers.appendChild(orderedList);
 // }
 
-// // let's user guess how many siblings I have
+// // has user guess how many siblings I have
 // function guessNum(correctAnswers) {
-//   let num = prompt('guess how many siblings I have (enter a number). You have 4 guesses');
 //   let siblingsAnswer = 7;
-//   num = parseInt(num);
-
-//   for (let i = 0; i < 3; i++) {
+//   for (let i = 0; i < 4; i++) {
+//     let num = prompt('guess how many siblings I have (enter a number). You have ' + (4 - i) + ' guesses left');
+//     num = parseInt(num);
 //     if (num > siblingsAnswer) {
 //       alert('too high');
-//       num = prompt('keep guessing');
 //     } else if (num < siblingsAnswer) {
 //       alert('too low');
-//       num = prompt('keep guessing');
-//     } else if (num == siblingsAnswer) {
+//     } else if (num === siblingsAnswer) {
 //       alert('you guessed it!');
 //       correctAnswers++;
-//       console.log("correct: " + correctAnswers);
+//       console.log('correct: ' + correctAnswers);
 //       break;
+//     } else {
+//       alert('please enter a number next time');
 //     }
 //   }
 //   alert('I have ' + siblingsAnswer + ' siblings.');
 //   return correctAnswers;
 // }
 
-// // let's user guess which states I've been to
+// // has user guess which states I've been to
 // function guessStates(correctAnswers) {
-//   let guess = prompt('Guess one of the states I\'ve been to in the USA. You have 6 guesses').toLowerCase();
 //   let states = ['washington', 'texas', 'california', 'idaho', 'oregon'];
-//   for (let i  = 0; i < 5; i++) {
-//     if (guess !== states[0] && guess !== states[1] && guess !== states[2] &&
-//       guess !== states[3] && guess !== states[4]) {
-//         guess = prompt('nope, guess again!');
-//     } else {
-//       alert('yeah, that\'s one of them');
-//       correctAnswers++;
-//       console.log("correct: " + correctAnswers);
+//   let guessed = false;
+//   for (let i  = 0; i < 6; i++) {
+//     let guess = prompt('Guess one of the states I\'ve been to in the USA. You have '
+//     + (6 - i) + ' guesses left').toLowerCase();
+//     for (let j = 0; j < states.length; j++) {
+//       if (guess === states[j]) {
+//         alert('yeah, that\'s one of them');
+//         correctAnswers++;
+//         console.log('correct: ' + correctAnswers);
+//         guessed = true;
+//         break;
+//       }
+//     }
+//     if (guessed) {
 //       break;
+//     } else {
+//       guess = alert('nope!');
 //     }
 //   }
-//   let statesList = "I've been to: ";
+//   let statesList = 'I\'ve been to: ';
 //   for (let i = 0; i < states.length - 1; i++) {
-//     statesList += states[i] + ", ";
+//     statesList += states[i] + ', ';
 //   }
-//   statesList += states[states.length - 1] + ".";
+//   statesList += states[states.length - 1] + '.';
 //   alert(statesList);
 //   return correctAnswers;
 // }
