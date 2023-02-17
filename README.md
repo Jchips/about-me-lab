@@ -4,7 +4,7 @@
 
 This is an about me guessing game that utilizes HTML, CSS, &amp; JavaScript.
 
-### Author: Jaye Rhinehart
+### Author: Jaye Rhinehart (navigator) and Kiengchay Gomez (driver)
 
 ### Links and Resources
 
