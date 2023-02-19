@@ -33,8 +33,9 @@ footer {
 h2 {
   background-image: linear-gradient(315deg, #bdcad9 0%, #e1dada 74%);
   padding: 20px;
-  margin-left: 20px;
-  margin-right: 20px;
+  /* margin-left: 20px;
+  margin-right: 20px; */
+  margin: 20px;
   border-radius: 20px;
 }
 
@@ -46,6 +47,10 @@ button,
 p {
   margin-left: 40px;
   margin-right: 40px;
+}
+
+.answers {
+  display: none;
 }
 
 footer {
